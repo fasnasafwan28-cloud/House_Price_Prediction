@@ -1,7 +1,6 @@
 import streamlit as st
 import pickle
 import numpy as np
-import os
 from pathlib import Path
 
 
@@ -64,19 +63,11 @@ div[data-testid="stSidebar"]{
 # Load Model
 # -----------------------------
 
-
-st.write("Current working directory:", os.getcwd())
-st.write("App directory:", Path(__file__).resolve().parent)
-st.write("Files in app directory:", os.listdir(Path(__file__).resolve().parent))
-
-
 BASE_DIR = Path(__file__).parent
 MODEL_PATH = BASE_DIR / "house_price_model.pkl"
 
 with open(MODEL_PATH, "rb") as f:
     model = pickle.load(f)
-
-
 
 
 # -----------------------------
@@ -247,7 +238,7 @@ elif furnishing == "Unfurnished":
 # -----------------------------
 # Prediction
 # -----------------------------
-if st.button("💰 Predict House Price", use_container_width=True):
+if st.button(" Predict House Price", use_container_width=True):
 
     features = np.array([[
         area,
