@@ -25,9 +25,6 @@ This project is developed using **Python**, **Scikit-Learn**, and **Streamlit**.
 - Scikit-Learn
 - Streamlit
 - Pickle
-- Matplotlib
-- Seaborn
-
 ---
 
 ## 📊 Dataset Features
