@@ -1,6 +1,9 @@
 import streamlit as st
 import pickle
 import numpy as np
+import os
+from pathlib import Path
+
 
 # -----------------------------
 # Page Configuration
@@ -60,7 +63,18 @@ div[data-testid="stSidebar"]{
 # -----------------------------
 # Load Model
 # -----------------------------
-model = pickle.load(open("house_price_model.pkl", "rb"))
+
+
+st.write("Current working directory:", os.getcwd())
+st.write("App directory:", Path(__file__).resolve().parent)
+st.write("Files in app directory:", os.listdir(Path(__file__).resolve().parent))
+
+
+BASE_DIR = Path(__file__).parent
+MODEL_PATH = BASE_DIR / "house_price_model.pkl"
+
+with open(MODEL_PATH, "rb") as f:
+    model = pickle.load(f)
 
 
 
@@ -68,7 +82,7 @@ model = pickle.load(open("house_price_model.pkl", "rb"))
 # -----------------------------
 # Title
 st.markdown(
-    "<div class='main-title'>🏡 House Price Prediction</div>",
+    "<div class='main-title'>🏠 House Price Prediction</div>",
     unsafe_allow_html=True
 )
 
@@ -112,7 +126,7 @@ st.markdown("""
 # -----------------------------
 # Sidebar
 # -----------------------------
-st.sidebar.title("📢 Model Information")
+st.sidebar.title("📋 Model Information")
 
 st.sidebar.info("""
 **Machine Learning Model**
@@ -251,7 +265,8 @@ if st.button("💰 Predict House Price", use_container_width=True):
         unfurnished
     ]])
 
-   
+    # Uncomment if scaler used
+    # features = scaler.transform(features)
 
     prediction = model.predict(features)[0]
 
